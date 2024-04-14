@@ -1,18 +1,20 @@
 <?php
 
 namespace Tests\Unit;
-use App\Models\Profile;
+
 use App\Models\Admin;
+use App\Models\Profile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-
 class CommentTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    public function test_authenticated_admin_can_add_comment_to_profile()
+    /**
+     * @test
+     */
+    public function authenticated_admin_can_add_comment_to_profile()
     {
         $admin = Admin::factory()->create();
         $profile = Profile::factory()->create();
@@ -27,7 +29,10 @@ class CommentTest extends TestCase
         $this->assertDatabaseHas('comments', ['content' => 'This is a test comment.']);
     }
 
-    public function test_administrator_can_only_post_one_comment_on_profile()
+    /**
+     * @test
+     */
+    public function administrator_can_only_post_one_comment_on_profile()
     {
         $admin = Admin::factory()->create();
         $profile = Profile::factory()->create();

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfileCollection;
 use App\Models\Profile;
-use App\Http\Requests\StoreProfileRequest;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -13,6 +13,7 @@ class ProfileController extends Controller
     public function index(Request $request)
     {
         $profiles = Profile::whereActive()->paginate();
+
         return new ProfileCollection($profiles);
     }
 

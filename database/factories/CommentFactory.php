@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Admin;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,10 +21,10 @@ class CommentFactory extends Factory
         return [
             'content' => $this->faker->paragraph,
             'admin_id' => function () {
-                return \App\Models\Admin::factory()->create()->id;
+                return Admin::factory()->create()->id;
             },
             'profile_id' => function () {
-                return \App\Models\Profile::factory()->create()->id;
+                return Profile::factory()->create()->id;
             },
         ];
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
@@ -15,6 +15,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $admin = Auth::user();
             $token = $admin->createToken('API Token')->plainTextToken;
+
             return response()->json(['token' => $token], 200);
         }
 
@@ -27,5 +28,4 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Logged out successfully'], 200);
     }
-
 }

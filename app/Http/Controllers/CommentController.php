@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Http\Requests\StoreCommentRequest;
+use App\Models\Comment;
 use App\Models\Profile;
 
 class CommentController extends Controller
@@ -21,7 +21,7 @@ class CommentController extends Controller
         }
 
         // Create the comment
-        $comment = new Comment();
+        $comment = new Comment;
         $comment->content = $request->input('content');
         $comment->admin()->associate($admin);
         $comment->profile()->associate($profile);

@@ -10,9 +10,9 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        "content",
-        "admin_id",
-        "profile_id",
+        'content',
+        'admin_id',
+        'profile_id',
     ];
 
     public function admin()

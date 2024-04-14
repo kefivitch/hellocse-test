@@ -12,17 +12,16 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "first_name",
-        "image",
-        "status",
-        "admin_id",
+        'name',
+        'first_name',
+        'image',
+        'status',
+        'admin_id',
     ];
 
     protected $casts = [
         'status' => StatusEnum::class,
     ];
-
 
     public function newEloquentBuilder($query): ProfileBuilder
     {

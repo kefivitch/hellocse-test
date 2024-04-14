@@ -21,7 +21,7 @@ class ProfileResource extends JsonResource
             'image' => $this->image,
         ];
 
-        if(auth('sanctum')->user()) {
+        if (auth('sanctum')->user()) {
             $response['status'] = $this->status;
         }
 

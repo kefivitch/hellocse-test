@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Builders;
+
 use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Builder;
 

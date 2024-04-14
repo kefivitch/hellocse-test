@@ -33,6 +33,11 @@ class Admin extends Authenticatable
         'remember_token',
     ];
 
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,9 +49,5 @@ class Admin extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function profiles() {
-        return $this->hasMany(Profile::class);
     }
 }

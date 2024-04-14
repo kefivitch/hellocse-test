@@ -3,20 +3,22 @@
 namespace Tests\Unit;
 
 use App\Enums\StatusEnum;
-use App\Models\Profile;
 use App\Models\Admin;
+use App\Models\Profile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Arr;
 use Illuminate\Http\UploadedFile;
-
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
+use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_store_method_creates_profile()
+    /**
+     * @test
+     */
+    public function store_method_creates_profile()
     {
         $admin = Admin::factory()->create();
         $this->actingAs($admin);
@@ -41,7 +43,10 @@ class ProfileTest extends TestCase
         Storage::disk('public')->assertExists('profile_images/' . $file->hashName());
     }
 
-    public function test_profiles_endpoint_returns_profiles()
+    /**
+     * @test
+     */
+    public function profiles_endpoint_returns_profiles()
     {
         // Create profiles
         Profile::factory()->count(3)->create(['status' => StatusEnum::Actif]);
@@ -61,7 +66,10 @@ class ProfileTest extends TestCase
         $response->assertJsonCount(3, 'data');
     }
 
-    public function test_profiles_endpoint_includes_status_for_authenticated_admin()
+    /**
+     * @test
+     */
+    public function profiles_endpoint_includes_status_for_authenticated_admin()
     {
         // Authenticate an admin
         $admin = Admin::factory()->create();
@@ -75,7 +83,10 @@ class ProfileTest extends TestCase
         $response->assertJsonFragment(['status' => $profile->status]);
     }
 
-    public function test_profiles_endpoint_excludes_status_for_guest()
+    /**
+     * @test
+     */
+    public function profiles_endpoint_excludes_status_for_guest()
     {
         Profile::factory()->create(['status' => StatusEnum::Actif]);
 
@@ -85,7 +96,10 @@ class ProfileTest extends TestCase
         $response->assertJsonMissing(['status']);
     }
 
-    public function test_update_profile()
+    /**
+     * @test
+     */
+    public function update_profile()
     {
         // Create an authenticated admin
         $admin = Admin::factory()->create();
@@ -111,7 +125,10 @@ class ProfileTest extends TestCase
         $this->assertEquals($newData['first_name'], $profile->first_name);
     }
 
-    public function test_delete_profile()
+    /**
+     * @test
+     */
+    public function delete_profile()
     {
         $admin = Admin::factory()->create();
         $this->actingAs($admin);
@@ -125,5 +142,4 @@ class ProfileTest extends TestCase
         // Assert profile is deleted from database
         $this->assertDatabaseMissing('profiles', ['id' => $profile->id]);
     }
-
 }
