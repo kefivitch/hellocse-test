@@ -42,6 +42,5 @@ class ProfileTest extends TestCase
         $response->assertStatus(201);
         $response->assertJson(['profile' => ['image' => 'profile_images/' . $file->hashName()]]);
         Storage::disk('public')->assertExists('profile_images/' . $file->hashName());
-
     }
 }
