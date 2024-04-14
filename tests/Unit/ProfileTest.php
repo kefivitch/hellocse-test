@@ -33,7 +33,7 @@ class ProfileTest extends TestCase
             'status' => Arr::random(StatusEnum::cases()),
         ];
 
-        $response = $this->postJson('/api/v1/profiles', $profileData);
+        $response = $this->postJson(route('api.v1.profiles.store'), $profileData);
 
         // Assert that the profile was created
         $response->assertStatus(201);
@@ -48,7 +48,7 @@ class ProfileTest extends TestCase
         Profile::factory()->count(1)->create(['status' => StatusEnum::Inactif]);
         Profile::factory()->count(1)->create(['status' => StatusEnum::Pending]);
 
-        $response = $this->get('/api/v1/profiles');
+        $response = $this->get(route('api.v1.profiles.index'));
         $response->assertStatus(200);
 
         $response->assertJsonStructure([
@@ -69,7 +69,7 @@ class ProfileTest extends TestCase
 
         $profile = Profile::factory()->create(['status' => StatusEnum::Actif]);
 
-        $response = $this->get('/api/v1/profiles');
+        $response = $this->get(route('api.v1.profiles.index'));
 
         // Assert response includes status field
         $response->assertJsonFragment(['status' => $profile->status]);
@@ -79,9 +79,51 @@ class ProfileTest extends TestCase
     {
         Profile::factory()->create(['status' => StatusEnum::Actif]);
 
-        $response = $this->get('/api/v1/profiles');
+        $response = $this->get(route('api.v1.profiles.index'));
 
         // Assert response excludes status field
         $response->assertJsonMissing(['status']);
     }
+
+    public function test_update_profile()
+    {
+        // Create an authenticated user
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $profile = Profile::factory()->create();
+
+        // New data to update profile
+        $newData = [
+            'name' => 'Updated Name',
+            'first_name' => 'Updated First Name',
+        ];
+
+        $response = $this->putJson(route('api.v1.profiles.update', $profile), $newData);
+
+        $response->assertStatus(200);
+
+        // Refresh profile from database
+        $profile->refresh();
+
+        // Assert profile is updated with new data
+        $this->assertEquals($newData['name'], $profile->name);
+        $this->assertEquals($newData['first_name'], $profile->first_name);
+    }
+
+    public function test_delete_profile()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $profile = Profile::factory()->create();
+
+        $response = $this->deleteJson(route('api.v1.profiles.destroy', $profile));
+
+        $response->assertStatus(200);
+
+        // Assert profile is deleted from database
+        $this->assertDatabaseMissing('profiles', ['id' => $profile->id]);
+    }
+
 }
