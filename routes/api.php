@@ -13,5 +13,6 @@ Route::get('/user', function (Request $request) {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
+Route::get('/profiles', [ProfileController::class, 'index']);
 Route::post('/profiles', [ProfileController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/profiles/{profile}/comments', [CommentController::class, 'store'])->middleware('auth:sanctum');

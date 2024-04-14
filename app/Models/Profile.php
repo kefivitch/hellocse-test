@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Builders\ProfileBuilder;
 use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,11 @@ class Profile extends Model
         'status' => StatusEnum::class,
     ];
 
+
+    public function newEloquentBuilder($query): ProfileBuilder
+    {
+        return new ProfileBuilder($query);
+    }
 
     public function user()
     {
