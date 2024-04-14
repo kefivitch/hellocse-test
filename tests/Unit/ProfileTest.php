@@ -107,13 +107,18 @@ class ProfileTest extends TestCase
 
         $profile = Profile::factory()->create();
 
+        Storage::fake('public');
+
+        $file = UploadedFile::fake()->image('updated_test_image.jpg');
+
         // New data to update profile
         $newData = [
             'name' => 'Updated Name',
             'first_name' => 'Updated First Name',
+            'image' => $file,
         ];
 
-        $response = $this->putJson(route('api.v1.profiles.update', $profile), $newData);
+        $response = $this->put(route('api.v1.profiles.update', $profile), $newData);
 
         $response->assertStatus(200);
 
@@ -123,6 +128,8 @@ class ProfileTest extends TestCase
         // Assert profile is updated with new data
         $this->assertEquals($newData['name'], $profile->name);
         $this->assertEquals($newData['first_name'], $profile->first_name);
+        $response->assertJson(['profile' => ['image' => 'profile_images/' . $file->hashName()]]);
+        Storage::disk('public')->assertExists('profile_images/' . $file->hashName());
     }
 
     /**

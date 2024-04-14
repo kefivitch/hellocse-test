@@ -42,7 +42,14 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        $profile->update($request->validated());
+        $validatedData = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('profile_images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+
+        $profile->update($validatedData);
 
         return response()->json(['message' => 'Profile updated successfully', 'profile' => $profile], 200);
     }
