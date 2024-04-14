@@ -18,13 +18,13 @@ class ProfileController extends Controller
 
     public function store(StoreProfileRequest $request)
     {
-        // get Authenticated user id
-        $userId = $request->user()->id;
+        // get Authenticated admin id
+        $adminId = $request->user()->id;
 
         $validatedData = $request->validated();
 
-        // Add user_id to validated data
-        $validatedData['user_id'] = $userId;
+        // Add admin_id to validated data
+        $validatedData['admin_id'] = $adminId;
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('profile_images', 'public');

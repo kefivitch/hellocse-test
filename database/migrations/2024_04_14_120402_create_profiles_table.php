@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("first_name");
             $table->string("image");
             $table->string("status")->default(StatusEnum::Inactif->value);
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

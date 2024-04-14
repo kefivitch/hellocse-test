@@ -13,17 +13,17 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request, Profile $profile)
     {
-        $user = $request->user();
+        $admin = $request->user();
 
-        // Check if the user is an administrator and has already posted a comment on this profile
-        if ($user && $profile->comments()->where('user_id', $user->id)->exists()) {
+        // Check if the admin is an administrator and has already posted a comment on this profile
+        if ($admin && $profile->comments()->where('admin_id', $admin->id)->exists()) {
             return response()->json(['message' => 'Administrators can only post one comment on a profile.'], 403);
         }
 
         // Create the comment
         $comment = new Comment();
         $comment->content = $request->input('content');
-        $comment->user()->associate($user);
+        $comment->admin()->associate($admin);
         $comment->profile()->associate($profile);
         $comment->save();
 

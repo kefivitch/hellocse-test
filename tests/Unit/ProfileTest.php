@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use App\Enums\StatusEnum;
 use App\Models\Profile;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +18,8 @@ class ProfileTest extends TestCase
 
     public function test_store_method_creates_profile()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin);
 
         Storage::fake('public');
 
@@ -61,11 +61,11 @@ class ProfileTest extends TestCase
         $response->assertJsonCount(3, 'data');
     }
 
-    public function test_profiles_endpoint_includes_status_for_authenticated_user()
+    public function test_profiles_endpoint_includes_status_for_authenticated_admin()
     {
-        // Authenticate a user
-        $user = User::factory()->create();
-        $this->actingAs($user, 'sanctum');
+        // Authenticate an admin
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin, 'sanctum');
 
         $profile = Profile::factory()->create(['status' => StatusEnum::Actif]);
 
@@ -87,9 +87,9 @@ class ProfileTest extends TestCase
 
     public function test_update_profile()
     {
-        // Create an authenticated user
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        // Create an authenticated admin
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin);
 
         $profile = Profile::factory()->create();
 
@@ -113,8 +113,8 @@ class ProfileTest extends TestCase
 
     public function test_delete_profile()
     {
-        $user = User::factory()->create();
-        $this->actingAs($user);
+        $admin = Admin::factory()->create();
+        $this->actingAs($admin);
 
         $profile = Profile::factory()->create();
 

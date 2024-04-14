@@ -18,8 +18,8 @@ class CommentFactory extends Factory
     {
         return [
             'content' => $this->faker->paragraph,
-            'user_id' => function () {
-                return \App\Models\User::factory()->create()->id;
+            'admin_id' => function () {
+                return \App\Models\Admin::factory()->create()->id;
             },
             'profile_id' => function () {
                 return \App\Models\Profile::factory()->create()->id;

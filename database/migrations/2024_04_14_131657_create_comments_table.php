@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text("content");
             $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

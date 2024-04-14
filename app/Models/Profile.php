@@ -16,7 +16,7 @@ class Profile extends Model
         "first_name",
         "image",
         "status",
-        "user_id",
+        "admin_id",
     ];
 
     protected $casts = [
@@ -29,9 +29,9 @@ class Profile extends Model
         return new ProfileBuilder($query);
     }
 
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 
     public function comments()

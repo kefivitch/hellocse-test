@@ -11,13 +11,13 @@ class Comment extends Model
 
     protected $fillable = [
         "content",
-        "user_id",
+        "admin_id",
         "profile_id",
     ];
 
-    public function user()
+    public function admin()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Admin::class);
     }
 
     public function profile()

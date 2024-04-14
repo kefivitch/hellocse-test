@@ -13,8 +13,8 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('API Token')->plainTextToken;
+            $admin = Auth::user();
+            $token = $admin->createToken('API Token')->plainTextToken;
             return response()->json(['token' => $token], 200);
         }
 

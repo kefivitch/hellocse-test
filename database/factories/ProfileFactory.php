@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\StatusEnum;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,8 +23,8 @@ class ProfileFactory extends Factory
             'first_name' => $this->faker->firstName,
             'image' => $this->faker->imageUrl(),
             'status' => $this->faker->randomElement(StatusEnum::cases()),
-            'user_id' => function () {
-                return User::factory()->create()->id;
+            'admin_id' => function () {
+                return Admin::factory()->create()->id;
             },
         ];
     }
