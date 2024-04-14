@@ -6,15 +6,22 @@ use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfileCollection;
 use App\Models\Profile;
+use App\Repositories\ProfileRepository;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function __construct(private ProfileRepository $profileRepository)
+    {
+    }
+
     public function index(Request $request)
     {
-        $profiles = Profile::whereActive()->paginate();
-
-        return new ProfileCollection($profiles);
+        return new ProfileCollection(
+            $this->profileRepository->getActiveProfiles(
+                perPage: $request->has('perPage') ? $request->perPage : 10
+            )
+        );
     }
 
     public function store(StoreProfileRequest $request)
