@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "28782c11-d52b-49aa-aab6-0115a04689f2",
+		"name": "HelloCSE-Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9431781"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"example@example.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/login",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Infos",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|gpjiRnVrpfMPA2mQlYINAipzMUVFt3UJBVIMhtJed3d3b644",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|gpjiRnVrpfMPA2mQlYINAipzMUVFt3UJBVIMhtJed3d3b644",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/logout",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profiles",
+			"item": [
+				{
+					"name": "List Profiles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|eIe2VDUtB1WJ4Ti0ScOBGdrit3IrWbdXnjDkjJKA196d17e7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "first",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "status",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/kefiv/Desktop/20210627113743-p.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/profiles",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Profile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|UITHe1Q6FlLNeavBNnWNC29C3Ec52UmYq80yn9Wx349eb700",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "first",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "actif",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/kefiv/Desktop/20210627113743-p.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/profiles",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Profile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|fQiFIvZHswxLABR7MGREGjPCsQnOMd7UMI0LAO1Td6f226c4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "lassad",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "KEFI",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "actif",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/profiles/3",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profiles",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|UITHe1Q6FlLNeavBNnWNC29C3Ec52UmYq80yn9Wx349eb700",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "first",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "inactif",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/kefiv/Desktop/20210627113743-p.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/profiles/10",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profiles",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a Comment on Profile",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3|UITHe1Q6FlLNeavBNnWNC29C3Ec52UmYq80yn9Wx349eb700",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "comment content",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://hellocse-test.test/api/v1/profiles/2/comments",
+							"protocol": "http",
+							"host": [
+								"hellocse-test",
+								"test"
+							],
+							"path": [
+								"api",
+								"v1",
+								"profiles",
+								"2",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
