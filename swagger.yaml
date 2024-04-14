@@ -1,0 +1,246 @@
+openapi: 3.0.3
+info:
+  title: HelloCSE-Test
+  version: 1.0.0
+  contact: {}
+servers:
+  - url: http://hellocse-test.test
+paths:
+  /api/v1/login:
+    post:
+      tags:
+        - auth
+      summary: Login
+      description: Login
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: example@example.com
+                password:
+                  type: string
+                  example: password
+            examples:
+              Login:
+                value:
+                  email: example@example.com
+                  password: password
+      responses:
+        '200':
+          description: ''
+  /api/v1/user:
+    get:
+      tags:
+        - auth
+      summary: User Infos
+      description: User Infos
+      operationId: userInfos
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/v1/logout:
+    post:
+      tags:
+        - auth
+      summary: Logout
+      description: Logout
+      operationId: logout
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/v1/profiles:
+    get:
+      tags:
+        - profiles
+      summary: List Profiles
+      description: List Profiles
+      operationId: listProfiles
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: first
+                image:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                  example: name
+                status:
+                  type: string
+                  example: status
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - profiles
+      summary: Add Profile
+      description: Add Profile
+      operationId: addProfile
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: first
+                image:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                  example: name
+                status:
+                  type: string
+                  example: actif
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/v1/profiles/3:
+    put:
+      tags:
+        - profiles
+      summary: Edit Profile
+      description: Edit Profile
+      operationId: editProfile
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: KEFI
+                name:
+                  type: string
+                  example: lassad
+                status:
+                  type: string
+                  example: actif
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/v1/profiles/10:
+    delete:
+      tags:
+        - profiles
+      summary: Delete Profile
+      description: Delete Profile
+      operationId: deleteProfile
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  example: first
+                image:
+                  type: string
+                  format: binary
+                name:
+                  type: string
+                  example: name
+                status:
+                  type: string
+                  example: inactif
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+  /api/v1/profiles/2/comments:
+    post:
+      tags:
+        - profiles
+      summary: Add a Comment on Profile
+      description: Add a Comment on Profile
+      operationId: addACommentOnProfile
+      parameters:
+        - name: x-requested-with
+          in: header
+          schema:
+            type: string
+            example: XMLHttpRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: comment content
+      responses:
+        '200':
+          description: ''
+      security:
+        - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+tags:
+  - name: auth
+  - name: profiles
