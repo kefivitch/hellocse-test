@@ -109,7 +109,7 @@ To fix:
 ```
 ## Recommendations / BONUS
 
-Here are some recommendations that can be done on this project:
+Here are some recommendations/features on this project:
 
 - The login is **based on JWT**.
 - **Using Repository** (as I did in the ``profileController@index``) for better code re-usability and maintenability (insure that we are implementing DRY principles)
@@ -119,7 +119,7 @@ Here are some recommendations that can be done on this project:
 - I have added **a very powerful static code analyzer** using Tlint, PHP_CodeSniffer, PHP CS Fixer & Pint combined to ensure that we are delivering a robust code.
 - I have added **a github Actions pipeline** the check code quality using to tools mentioned above. Be awere git blame can be generated if your code is not as good as expected. See PR #1 to see the result.
 - **Better use User<->Roles instead of 1 model named Admin** to ensure code simplicity (Implement KISS principles in here)
-- I have added **docker configuration** check ``Docker-compose.yml`` using laravel-sail for better development env and better DX. 
+- I have added **docker configuration** (check ``Docker-compose.yml``) using laravel-sail for better development env and better DX. 
 
 
 
